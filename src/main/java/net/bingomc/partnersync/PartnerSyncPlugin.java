@@ -55,6 +55,9 @@ public class PartnerSyncPlugin {
     @Getter
     private static String apiUrl;
 
+    @Getter
+    private static int apiTimeoutSeconds;
+
     @Inject
     public PartnerSyncPlugin(ProxyServer server, Logger logger, @DataDirectory Path dataDirectory) {
         PartnerSyncPlugin.server = server;
@@ -108,6 +111,7 @@ public class PartnerSyncPlugin {
     private void loadConfigValues() {
         apiKey = config.getString(Route.from("api-key"));
         apiUrl = config.getString(Route.from("api-url"));
+        apiTimeoutSeconds = config.getInt(Route.from("api-timeout-seconds"));
     }
 
     private void shutdownPlugin() {

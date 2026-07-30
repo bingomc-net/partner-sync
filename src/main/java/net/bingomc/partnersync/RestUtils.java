@@ -12,6 +12,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.Collection;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class RestUtils {
         HttpRequest postRequest = HttpRequest.newBuilder()
                 .uri(URI.create(String.format("%s/%s", PartnerSyncPlugin.getApiUrl(), "servers")))
                 .header("Api-Key", PartnerSyncPlugin.getApiKey())
+                .timeout(Duration.ofSeconds(PartnerSyncPlugin.getApiTimeoutSeconds()))
                 .POST(HttpRequest.BodyPublishers.noBody())
                 .build();
 
@@ -53,6 +55,7 @@ public class RestUtils {
         HttpRequest getRequest = HttpRequest.newBuilder()
                 .uri(URI.create(String.format("%s/%s", PartnerSyncPlugin.getApiUrl(), "servers")))
                 .header("Api-Key", PartnerSyncPlugin.getApiKey())
+                .timeout(Duration.ofSeconds(PartnerSyncPlugin.getApiTimeoutSeconds()))
                 .build();
 
         HttpClient httpClient = HttpClient.newHttpClient();
@@ -67,6 +70,7 @@ public class RestUtils {
         HttpRequest postRequest = HttpRequest.newBuilder()
                 .uri(URI.create(String.format("%s/%s", PartnerSyncPlugin.getApiUrl(), "servers/" + serverId)))
                 .header("Api-Key", PartnerSyncPlugin.getApiKey())
+                .timeout(Duration.ofSeconds(PartnerSyncPlugin.getApiTimeoutSeconds()))
                 .DELETE()
                 .build();
 
